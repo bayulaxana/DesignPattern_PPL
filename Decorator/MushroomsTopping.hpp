@@ -1,9 +1,9 @@
 #include "PizzaDecorator.hpp"
 
-class MushroomTopping : public PizzaDecorator
+class MushroomsTopping : public PizzaDecorator
 {
     public:
-        MushroomTopping(Pizza *basePizza): PizzaDecorator(basePizza){}
+        MushroomsTopping(Pizza *basePizza): PizzaDecorator(basePizza){}
 
         string Serve()
         {

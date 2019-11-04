@@ -7,10 +7,8 @@ class PlainPizza : public Pizza
         string Serve() {
             return "Pizza";
         }
-        float price()
+        float getPrice()
         {
             return 50;
         }
-        
-
 };
