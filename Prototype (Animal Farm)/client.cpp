@@ -14,24 +14,8 @@ Animal *AnimalFactory::chicken = nullptr;
 Animal *AnimalFactory::sheep = nullptr;
 Animal *AnimalFactory::cow = nullptr;
 
-void printListof(list<Animal*> &animals, string type)
-{
-    system("clear");
-    
-    if (animals.empty()) {
-        puts("You have no animals\n");
-    }
-    else {
-        int i = 0;
-        for (auto animal : animals) {
-            if (type == "ALL")
-                printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
-            if (animal->getType() == type)
-                printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
-        }
-        if (i == 0) printf("You have no %s\n", type.c_str());
-    }
-}
+void printListof(list<Animal*> &, string);
+void buyAnimal();
 
 int main()
 {
@@ -40,7 +24,6 @@ int main()
 
     /* List of Animal */
     list<Animal*> animalList;
-    animalList.push_back(AnimalFactory::createChicken());
 
     while (true) {
         puts("WELCOME TO THE FARM");
@@ -72,4 +55,23 @@ int main()
     }
 
     return 0;
+}
+
+void printListof(list<Animal*> &animals, string type)
+{
+    system("clear");
+    
+    if (animals.empty()) {
+        puts("You have no animals\n");
+    }
+    else {
+        int i = 0;
+        for (auto animal : animals) {
+            if (type == "ALL")
+                printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
+            if (animal->getType() == type)
+                printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
+        }
+        if (i == 0) printf("You have no %s\n", type.c_str());
+    }
 }
