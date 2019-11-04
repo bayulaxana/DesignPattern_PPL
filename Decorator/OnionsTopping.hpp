@@ -7,10 +7,10 @@ class OnionsTopping: public PizzaDecorator
 
         string Serve()
         {
-            return object_Pizza->Serve() + " topping Beef";
+            return object_Pizza->Serve() + " topping Onions";
         }
         float getPrice()
         {
-            return object_Pizza->getPrice()+20;
+            return object_Pizza->getPrice()+3;
         }
 };

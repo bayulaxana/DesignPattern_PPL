@@ -11,6 +11,6 @@ class CheeseTopping: public PizzaDecorator
         }
         float getPrice()
         {
-            return object_Pizza->getPrice()+20;
+            return object_Pizza->getPrice()+1;
         }
 };
