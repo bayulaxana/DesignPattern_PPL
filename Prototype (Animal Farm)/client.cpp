@@ -15,7 +15,8 @@ Animal *AnimalFactory::sheep = nullptr;
 Animal *AnimalFactory::cow = nullptr;
 
 void printListof(list<Animal*> &, string);
-void buyAnimal();
+void showBuyAnimal(list<Animal*> &);
+void buyAnimal(list<Animal*> &, string);
 
 int main()
 {
@@ -27,15 +28,14 @@ int main()
 
     while (true) {
         puts("WELCOME TO THE FARM");
-        puts("Choose Command");
-
+        puts("Choose Command\n");
         puts("1. View All Animals");
         puts("2. View Chickens");
         puts("3. View Cows");
         puts("4. View Sheeps");
-        puts("5. Buy Animals");
+        puts("5. Buy Animal");
 
-        printf(">> "); scanf("%d", &command);
+        printf("\n>> "); scanf("%d", &command);
 
         if (command == 1) {
             printListof(animalList, "ALL");
@@ -50,11 +50,50 @@ int main()
             printListof(animalList, "SHEEP");
         }
         else if (command == 5) {
-
+            showBuyAnimal(animalList);
         }
     }
 
     return 0;
+}
+
+void buyAnimal(list<Animal*> &animals, string type) {
+    Animal *object;
+
+    if (type == "COW") object = AnimalFactory::createCow();
+    else if (type == "CHICKEN") object = AnimalFactory::createChicken();
+    else if (type == "SHEEP") object = AnimalFactory::createSheep();
+
+    string name;
+    int age;
+
+    printf("Enter the name :"); cin >> name;
+    printf("Enter the age : "); cin >> age;
+
+    object->setName(name);
+    object->setAge(age);
+    animals.push_back(object);
+
+    object = nullptr;
+}
+
+void showBuyAnimal(list<Animal*> &animals)
+{
+    int comm = 0;
+    system("clear");
+    
+    while (!comm) {
+        puts("What animal to buy?");
+        printf("\n");
+        puts("1. Cow");
+        puts("2. Sheep");
+        puts("3. Chicken");
+        printf("\n> "); scanf("%d", &comm);
+
+        if (comm == 1) buyAnimal(animals, "COW");
+        else if (comm == 2) buyAnimal(animals, "SHEEP");
+        else buyAnimal(animals, "CHICKEN");
+    }
 }
 
 void printListof(list<Animal*> &animals, string type)
@@ -68,7 +107,7 @@ void printListof(list<Animal*> &animals, string type)
         int i = 0;
         for (auto animal : animals) {
             if (type == "ALL")
-                printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
+                printf("%d. %s %s %d\n", ++i, animal->getType().c_str(), animal->getName().c_str(), animal->getAge());
             if (animal->getType() == type)
                 printf("%d. %s %d\n", ++i, animal->getName().c_str(), animal->getAge());
         }
