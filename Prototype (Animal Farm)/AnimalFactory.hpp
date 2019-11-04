@@ -33,3 +33,7 @@ Animal* AnimalFactory::createCow() {
 Animal* AnimalFactory::createSheep() {
     return sheep->clone();
 }
+
+Animal *AnimalFactory::chicken = nullptr;
+Animal *AnimalFactory::sheep = nullptr;
+Animal *AnimalFactory::cow = nullptr;
