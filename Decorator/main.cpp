@@ -1,6 +1,6 @@
 #include <list>
 #include <algorithm>
-
+#include <vector>
 #ifndef BASE
 #define BASE
 #include <string>
@@ -57,11 +57,11 @@ class BaconTopping: public PizzaDecorator
 
         string Serve()
         {
-            return object_Pizza->Serve() + " topping Beef";
+            return object_Pizza->Serve() + " plus topping Bacon";
         }
         float getPrice()
         {
-            return object_Pizza->getPrice()+20;
+            return object_Pizza->getPrice() + 20;
         }
 };
 
@@ -72,38 +72,63 @@ class MushroomsTopping : public PizzaDecorator
 
         string Serve()
         {
-            return object_Pizza->Serve() + " topping Mushrooms";
+            return object_Pizza->Serve() + " plus topping Mushrooms";
         }
         float getPrice()
         {
-            return object_Pizza->getPrice()+10;
+            return object_Pizza->getPrice() + 10;
         }
 };
 
 int main(){
     string input;
     int pilih_menu;
+    int i=0;
+    vector<Pizza*> pizzaList;
+    vector<PizzaDecorator*> toppingList;
 
-    Pizza *plainPizza = new PlainPizza();
-    cout << plainPizza ->Serve() <<endl;
-    cout << plainPizza-> getPrice() <<endl;
+    while(1){
+        pizzaList.push_back(new PlainPizza());
+        cout << pizzaList[i] ->Serve() <<endl;
+        cout << pizzaList[i]-> getPrice() <<endl;
 
-    cout <<"Pizza berhasil ditambahkan, Tambahkan topping"<<endl;
-    cout << "Pilih Topping"<<endl;
-    cout << "1. Bacon\n2. Mushrooms\n";
-    cin >> pilih_menu;
+        cout <<"Pizza berhasil ditambahkan, Tambahkan topping"<<endl;
+        cout << "Press + to Add Pizza\n";
+        cout << "Press EXIT to Exit\n";
 
-    if(pilih_menu==1)
-    {
-        Pizza *toppingPizza = new BaconTopping(plainPizza);
-        cout << toppingPizza ->Serve() <<endl;
-        cout << toppingPizza-> getPrice() <<endl;
-    }
-    else if(pilih_menu==2)
-    {
-        Pizza *toppingPizza = new MushroomsTopping(plainPizza);
-        cout << toppingPizza ->Serve() <<endl;
-        cout << toppingPizza-> getPrice() <<endl;
+        cin >> input;
+        if(input=="+")
+        {
+            while(1)
+            {
+                cout << "Pilih Topping"<<endl;
+                cout << "1. Bacon\n2. Mushrooms\n3. exit\n";
+                cin >> pilih_menu;
+
+                if(pilih_menu==1)
+                {
+                    toppingList.push_back(new BaconTopping(pizzaList[i]));
+                    cout << toppingList[i] ->Serve() <<endl;
+                    cout << toppingList[i]-> getPrice() <<endl;
+                }
+                else if(pilih_menu==2)
+                {
+                    toppingList.push_back(new MushroomsTopping(pizzaList[i]));
+                    cout << toppingList[i] ->Serve() <<endl;
+                    cout << toppingList[i]-> getPrice() <<endl;
+                }
+                else if(pilih_menu==3)
+                {
+                    break;
+                }
+                delete toppingList[i];
+            }
+        }
+        else if(input=="EXIT")
+        {
+            break;
+        }
+        
     }
 
 }
