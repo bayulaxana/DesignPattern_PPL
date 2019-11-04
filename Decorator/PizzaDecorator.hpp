@@ -1,6 +1,7 @@
+#pragma once
 #include "Pizza.hpp"
 
-class PizzaDecorator: public Pizza{
+class PizzaDecorator: public Pizza {
     protected:
         Pizza *object_Pizza;
 

@@ -1,6 +1,6 @@
 #include "PizzaDecorator.hpp"
 
-class MushroomTopping: public PizzaDecorator
+class MushroomTopping : public PizzaDecorator
 {
     public:
         MushroomTopping(Pizza *basePizza): PizzaDecorator(basePizza){}

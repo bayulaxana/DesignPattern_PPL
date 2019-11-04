@@ -14,7 +14,7 @@ class Pizza{
         void setPrice(float price);
 
     public:
-        virtual string Serve()=0;
+        virtual string Serve() = 0;
         virtual ~Pizza(){}
         virtual float getPrice();
 };
