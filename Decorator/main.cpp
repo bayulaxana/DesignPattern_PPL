@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Pizza.hpp"
 #include "PlainPizza.hpp"
+#include "PizzaDecorator.hpp"
 #include "MushroomsTopping.hpp"
 #include "BaconTopping.hpp"
 #include "CheeseTopping.hpp"
