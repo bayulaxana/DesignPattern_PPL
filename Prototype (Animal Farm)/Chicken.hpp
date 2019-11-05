@@ -15,12 +15,10 @@ public:
     }
 };
 
-Chicken::Chicken()
-{}
+Chicken::Chicken() {}
 
 Chicken::Chicken(string type)
-: Animal(type)
-{}
+: Animal(type) {}
 
 Animal* Chicken::clone() {
     return new Chicken(*this);

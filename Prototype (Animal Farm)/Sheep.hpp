@@ -11,12 +11,10 @@ public:
     Animal* clone();
 };
 
-Sheep::Sheep()
-{}
+Sheep::Sheep() {}
 
 Sheep::Sheep(string type)
-: Animal(type)
-{}
+: Animal(type) {}
 
 Animal* Sheep::clone() {
     return new Sheep(*this);
